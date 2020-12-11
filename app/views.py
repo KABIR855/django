@@ -47,6 +47,7 @@ def search(request):
             Q(name__icontains=search_term) |
             Q(email__icontains=search_term) |
             Q(info__icontains=search_term) |
+            Q(user__icontains=search_term) |
             Q(phone__iexact=search_term)
         )
         context = {
@@ -61,7 +62,7 @@ def search(request):
 class ContactCreateView(LoginRequiredMixin, CreateView):
     model = Contact
     template_name = 'create.html'
-    fields = ['name', 'email', 'phone', 'info', 'gender', 'image']
+    fields = ['name', 'email', 'phone', 'info', 'gender','user', 'image']
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -75,7 +76,7 @@ class ContactCreateView(LoginRequiredMixin, CreateView):
 class ContactUpdateView(LoginRequiredMixin, UpdateView):
     model = Contact
     template_name = 'update.html'
-    fields = ['name', 'email', 'phone', 'info', 'gender', 'image']
+    fields = ['name', 'email', 'phone', 'info', 'gender', 'user', 'image']
 
     def form_valid(self, form):
         instance = form.save()

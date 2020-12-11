@@ -1,17 +1,17 @@
-{% load static %} {% if contact.gender == 'male' %}
+{% load static %} {% if contact.user == 'student' %}
 <!-- Card for details -->
 <div class="card my-2 mx-2 boy-card {% if 'detail' in request.path %}mx-auto w-25{% endif %}">
   <img
     src="{% if contact.image %}
         {{ contact.image.url }}
         {% else %}
-        {% static 'images/boy.png' %}
+        {% static 'images/student.png' %}
         {% endif %}"
     class="img-fluid"
-  />
+     width="200" height="100"/>
   <div class="card-header">
     <a href="{% url 'detail' contact.id %}" class="text-white header-link"
-      ><i class="fas fa-mars mr-2"></i> {{ contact.name }}</a
+      > {{ contact.name }}</a
     >
   </div>
   <div class="card-body pb-0">
@@ -24,6 +24,7 @@
       <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
     </p>
     <p><i class="fas fa-info-circle mr-2"></i> {{ contact.info }}</p>
+     <p><i class="fas fa-info-circle mr-2"></i> {{ contact.user }}</p>
   </div>
 </div>
 <!-- Card for details ends -->
@@ -33,14 +34,14 @@
     src="{% if contact.image %}
         {{ contact.image.url }}
         {% else %}
-        {% static './images/girl.png' %}
+        {% static './images/teacher.png' %}
         {% endif %}"
     class="img-fluid"
-  />
+    width="200" height="100"/>
   <div class="card-header">
     <a href="{% url 'detail' contact.id %}" class="text-white header-link"
-      ><i class="fas fa-venus mr-2"></i> {{ contact.name }}</a
-    >
+      > {{ contact.name }} </a>
+    
   </div>
   <div class="card-body pb-0">
     <p>
@@ -52,6 +53,7 @@
       <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a>
     </p>
     <p><i class="fas fa-info-circle mr-2"></i> {{ contact.info }}</p>
+       <p><i class="fas fa-info-circle mr-2"></i> {{ contact.user }}</p>
   </div>
 </div>
 {% endif %}
